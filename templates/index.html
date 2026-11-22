@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090512">
+<title>V-TAPER AI COMMANDER</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">V</div>
+    <div>
+      <h1>V-TAPER <span>AI</span></h1>
+      <small>NEURAL FITNESS COMMAND</small>
+    </div>
+  </div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<main class="container">
+
+<section class="hero panel">
+  <div>
+    <small>PERSONAL TRAINING INTELLIGENCE</small>
+    <h2>WELCOME,<br><span>COMMANDER.</span></h2>
+    <p id="commanderMessage">
+      Your training journey starts here.
+    </p>
+    <button onclick="startProtocol()">INITIALIZE</button>
+  </div>
+  <div class="radar">
+    <div class="radar-core">V</div>
+  </div>
+</section>
+
+<section class="panel wizard">
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+  <small id="stepNumber">STEP 1 OF 4</small>
+
+  <div id="step1" class="wizard-step">
+    <h3>01 / VISUAL REFERENCE</h3>
+    <p>Choose an optional photo. It will only be previewed locally. COMMANDER does not judge or score your appearance.</p>
+
+    <input type="file" id="photo" accept="image/*">
+    <label for="photo" class="upload">SELECT PHOTO</label>
+    <div id="scanVisual">NO IMAGE SELECTED</div>
+    <button onclick="nextStep(2)">CONTINUE</button>
+    <button class="secondary" onclick="nextStep(2)">SKIP PHOTO</button>
+  </div>
+
+  <div id="step2" class="wizard-step hidden">
+    <h3>02 / EXPERIENCE</h3>
+    <p>How familiar are you with exercise?</p>
+
+    <label>YOUR EXPERIENCE</label>
+    <select id="experience">
+      <option value="beginner">Beginner</option>
+      <option value="some">Some experience</option>
+    </select>
+
+    <label>AVAILABLE EQUIPMENT</label>
+    <select id="equipment">
+      <option value="none">No equipment</option>
+      <option value="basic">Basic equipment</option>
+    </select>
+
+    <button onclick="nextStep(3)">CONTINUE</button>
+    <button class="secondary" onclick="nextStep(1)">BACK</button>
+  </div>
+
+  <div id="step3" class="wizard-step hidden">
+    <h3>03 / TRAINING PREFERENCES</h3>
+
+    <label>TRAINING FOCUS</label>
+    <select id="goal">
+      <option value="full">General fitness</option>
+      <option value="posture">Posture and back strength</option>
+      <option value="core">Core stability</option>
+      <option value="upper">Upper-body strength</option>
+    </select>
+
+    <label>TIME AVAILABLE</label>
+    <select id="duration">
+      <option value="10">10 minutes</option>
+      <option value="15">15 minutes</option>
+      <option value="20">20 minutes</option>
+    </select>
+
+    <label>ANY MOVEMENT LIMITATIONS?</label>
+    <select id="limitations">
+      <option value="none">None that I know of</option>
+      <option value="some">Yes / I'm unsure</option>
+    </select>
+
+    <button onclick="nextStep(4)">CONTINUE</button>
+    <button class="secondary" onclick="nextStep(2)">BACK</button>
+  </div>
+
+  <div id="step4" class="wizard-step hidden">
+    <h3>04 / READY TO GENERATE</h3>
+    <p>COMMANDER will prepare a gentle beginner-friendly routine using your preferences.</p>
+    <p id="summary">Configuration ready.</p>
+
+    <button onclick="generatePlan()">GENERATE MY ROUTINE</button>
+    <button class="secondary" onclick="nextStep(3)">BACK</button>
+  </div>
+</section>
+
+<section class="section">
+  <h3>05 / YOUR TRAINING PROTOCOL</h3>
+  <div class="panel workout">
+    <div id="exerciseList">Complete setup to generate your routine.</div>
+    <div class="timer-area">
+      <small>REST TIMER</small>
+      <div id="timer">01:00</div>
+      <button onclick="startTimer()">START</button>
+      <button onclick="pauseTimer()">PAUSE</button>
+      <button onclick="resetTimer()">RESET</button>
+    </div>
+    <button onclick="completeSession()">COMPLETE SESSION</button>
+  </div>
+</section>
+
+<section class="section">
+  <h3>06 / COMMANDER AI</h3>
+  <div class="panel assistant">
+    <strong>COMMANDER</strong>
+    <p id="assistantMessage">Awaiting your instructions, Commander.</p>
+    <button onclick="speakMessage()">VOICE</button>
+  </div>
+</section>
+
+</main>
+
+<footer>V-TAPER AI // COMMANDER EDITION</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

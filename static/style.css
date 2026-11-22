@@ -1,0 +1,279 @@
+:root {
+  --bg:#090512;
+  --panel:#160d24;
+  --purple:#a855f7;
+  --bright:#d8a5ff;
+  --muted:#a18bad;
+  --border:#482566;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:
+    radial-gradient(ellipse at top,#351451,transparent 60%),
+    var(--bg);
+  color:#f6edff;
+  font-family:Arial,sans-serif;
+}
+
+body:before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(#a855f710 1px,transparent 1px),
+    linear-gradient(90deg,#a855f710 1px,transparent 1px);
+  background-size:35px 35px;
+}
+
+.topbar {
+  padding:16px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#0c0713;
+  border-bottom:1px solid var(--border);
+}
+
+.brand {
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.logo {
+  width:42px;
+  height:42px;
+  border:2px solid var(--purple);
+  display:grid;
+  place-items:center;
+  color:var(--bright);
+  font-size:25px;
+}
+
+h1 {
+  font-size:17px;
+  letter-spacing:3px;
+  margin:0;
+}
+
+h1 span {
+  color:var(--purple);
+}
+
+small {
+  color:var(--muted);
+  letter-spacing:1px;
+}
+
+.status {
+  font-size:9px;
+  color:var(--bright);
+}
+
+.container {
+  width:92%;
+  max-width:900px;
+  margin:25px auto;
+}
+
+.panel {
+  background:linear-gradient(145deg,#1a1028,#0f0919);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:0 0 20px #6b21a522;
+}
+
+.hero {
+  min-height:230px;
+  padding:25px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.hero h2 {
+  font-size:35px;
+  line-height:1.1;
+}
+
+.hero h2 span {
+  color:var(--bright);
+  text-shadow:0 0 15px var(--purple);
+}
+
+.hero p {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.radar {
+  width:120px;
+  height:120px;
+  border:1px solid var(--purple);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  box-shadow:0 0 30px #a855f755;
+  animation:pulse 3s infinite;
+}
+
+.radar-core {
+  font-size:40px;
+  color:var(--bright);
+}
+
+@keyframes pulse {
+  50% {box-shadow:0 0 45px #a855f788;}
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:15px 0 25px;
+}
+
+.stat {
+  padding:15px;
+}
+
+.stat strong {
+  display:block;
+  color:var(--bright);
+  margin-top:10px;
+}
+
+.section {
+  margin:25px 0;
+}
+
+.section h3 {
+  color:var(--bright);
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.config,.scanner,.workout,.assistant {
+  padding:20px;
+}
+
+label {
+  display:block;
+  margin:15px 0 8px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+select {
+  width:100%;
+  padding:13px;
+  background:#0c0714;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:5px;
+}
+
+button {
+  background:linear-gradient(90deg,#7928b5,#a855f7);
+  border:1px solid var(--purple);
+  color:white;
+  padding:12px 15px;
+  border-radius:5px;
+  margin:5px 0;
+  font-size:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.config button {
+  width:100%;
+  margin-top:20px;
+}
+
+#scanVisual {
+  min-height:150px;
+  display:grid;
+  place-items:center;
+  background:#0b0713;
+  border:1px dashed var(--purple);
+  overflow:hidden;
+  color:var(--bright);
+  font-size:11px;
+}
+
+#scanVisual img {
+  max-width:100%;
+  max-height:250px;
+}
+
+input[type=file] {
+  display:none;
+}
+
+.upload {
+  padding:13px;
+  border:1px solid var(--purple);
+  text-align:center;
+  cursor:pointer;
+  color:var(--bright);
+}
+
+.hint {
+  font-size:10px;
+  line-height:1.6;
+}
+
+.exercise {
+  padding:13px;
+  margin:10px 0;
+  border-left:3px solid var(--purple);
+  background:#211332;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+}
+
+.timer-area {
+  text-align:center;
+  border-top:1px solid var(--border);
+  padding:20px 0;
+  margin-top:20px;
+}
+
+#timer {
+  color:var(--bright);
+  font-size:48px;
+  margin:12px;
+  text-shadow:0 0 15px var(--purple);
+}
+
+.assistant {
+  border-left:3px solid var(--purple);
+}
+
+.assistant p {
+  color:var(--muted);
+  font-size:12px;
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--bright);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+@media(max-width:500px) {
+  .hero h2 {font-size:27px;}
+  .radar {width:80px;height:80px;}
+  .stats {gap:6px;}
+  .stat {padding:10px 6px;}
+  .stat strong {font-size:12px;}
+}
