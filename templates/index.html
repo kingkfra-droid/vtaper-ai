@@ -1,143 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090512">
-<title>V-TAPER AI COMMANDER</title>
-<link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">V</div>
-    <div>
-      <h1>V-TAPER <span>AI</span></h1>
-      <small>NEURAL FITNESS COMMAND</small>
-    </div>
-  </div>
-  <div class="status">● SYSTEM ONLINE</div>
-</header>
-
-<main class="container">
-
-<section class="hero panel">
-  <div>
-    <small>PERSONAL TRAINING INTELLIGENCE</small>
-    <h2>WELCOME,<br><span>COMMANDER.</span></h2>
-    <p id="commanderMessage">
-      Your training journey starts here.
-    </p>
-    <button onclick="startProtocol()">INITIALIZE</button>
-  </div>
-  <div class="radar">
-    <div class="radar-core">V</div>
-  </div>
-</section>
-
-<section class="panel wizard">
-  <div class="progress">
-    <div id="progressBar"></div>
-  </div>
-  <small id="stepNumber">STEP 1 OF 4</small>
-
-  <div id="step1" class="wizard-step">
-    <h3>01 / VISUAL REFERENCE</h3>
-    <p>Choose an optional photo. It will only be previewed locally. COMMANDER does not judge or score your appearance.</p>
-
-    <input type="file" id="photo" accept="image/*">
-    <label for="photo" class="upload">SELECT PHOTO</label>
-    <div id="scanVisual">NO IMAGE SELECTED</div>
-    <button onclick="nextStep(2)">CONTINUE</button>
-    <button class="secondary" onclick="nextStep(2)">SKIP PHOTO</button>
-  </div>
-
-  <div id="step2" class="wizard-step hidden">
-    <h3>02 / EXPERIENCE</h3>
-    <p>How familiar are you with exercise?</p>
-
-    <label>YOUR EXPERIENCE</label>
-    <select id="experience">
-      <option value="beginner">Beginner</option>
-      <option value="some">Some experience</option>
-    </select>
-
-    <label>AVAILABLE EQUIPMENT</label>
-    <select id="equipment">
-      <option value="none">No equipment</option>
-      <option value="basic">Basic equipment</option>
-    </select>
-
-    <button onclick="nextStep(3)">CONTINUE</button>
-    <button class="secondary" onclick="nextStep(1)">BACK</button>
-  </div>
-
-  <div id="step3" class="wizard-step hidden">
-    <h3>03 / TRAINING PREFERENCES</h3>
-
-    <label>TRAINING FOCUS</label>
-    <select id="goal">
-      <option value="full">General fitness</option>
-      <option value="posture">Posture and back strength</option>
-      <option value="core">Core stability</option>
-      <option value="upper">Upper-body strength</option>
-    </select>
-
-    <label>TIME AVAILABLE</label>
-    <select id="duration">
-      <option value="10">10 minutes</option>
-      <option value="15">15 minutes</option>
-      <option value="20">20 minutes</option>
-    </select>
-
-    <label>ANY MOVEMENT LIMITATIONS?</label>
-    <select id="limitations">
-      <option value="none">None that I know of</option>
-      <option value="some">Yes / I'm unsure</option>
-    </select>
-
-    <button onclick="nextStep(4)">CONTINUE</button>
-    <button class="secondary" onclick="nextStep(2)">BACK</button>
-  </div>
-
-  <div id="step4" class="wizard-step hidden">
-    <h3>04 / READY TO GENERATE</h3>
-    <p>COMMANDER will prepare a gentle beginner-friendly routine using your preferences.</p>
-    <p id="summary">Configuration ready.</p>
-
-    <button onclick="generatePlan()">GENERATE MY ROUTINE</button>
-    <button class="secondary" onclick="nextStep(3)">BACK</button>
-  </div>
-</section>
-
-<section class="section">
-  <h3>05 / YOUR TRAINING PROTOCOL</h3>
-  <div class="panel workout">
-    <div id="exerciseList">Complete setup to generate your routine.</div>
-    <div class="timer-area">
-      <small>REST TIMER</small>
-      <div id="timer">01:00</div>
-      <button onclick="startTimer()">START</button>
-      <button onclick="pauseTimer()">PAUSE</button>
-      <button onclick="resetTimer()">RESET</button>
-    </div>
-    <button onclick="completeSession()">COMPLETE SESSION</button>
-  </div>
-</section>
-
-<section class="section">
-  <h3>06 / COMMANDER AI</h3>
-  <div class="panel assistant">
-    <strong>COMMANDER</strong>
-    <p id="assistantMessage">Awaiting your instructions, Commander.</p>
-    <button onclick="speakMessage()">VOICE</button>
-  </div>
-</section>
-
-</main>
-
-<footer>V-TAPER AI // COMMANDER EDITION</footer>
-<script src="/static/app.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#09090f"><meta name="description" content="VYTRON AI — your private, intelligent training command centre"><title>VYTRON AI — Training Command</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/static/style.css"></head>
+<body><div class="app-shell"><aside class="sidebar" id="sidebar"><a class="brand" href="#home"><span class="brand-icon">V</span><span><b>VYTRON<span class="violet"> AI</span></b><small>FITNESS INTELLIGENCE</small></span></a><div class="side-label">COMMAND</div><nav class="nav" aria-label="Main navigation"><button class="nav-item active" data-view="home"><span>◈</span> Overview</button><button class="nav-item" data-view="train"><span>⌁</span> Training</button><button class="nav-item" data-view="martial-arts"><span>◌</span> Martial arts</button><button class="nav-item" data-view="routines"><span>⊞</span> Routine builder</button><button class="nav-item" data-view="camera"><span>◎</span> Camera coach <i class="live-dot"></i></button><button class="nav-item" data-view="muscles"><span>◉</span> Muscle explorer</button><button class="nav-item" data-view="progress"><span>▥</span> Progress</button></nav><div class="side-bottom"><div class="commander-mini"><span class="signal"></span><div><b>COMMANDER</b><small>Training intelligence online</small></div><span class="micro-orb">C</span></div><button class="nav-item" data-view="settings"><span>⚙</span> Settings</button><button class="nav-item" id="accountButton"><span>↗</span> Sign in / create account</button></div></aside>
+<main class="main"><header class="topbar"><button class="mobile-menu" id="menuButton" aria-label="Open navigation">☰</button><div class="breadcrumb">VYTRON <span>/</span> <b id="pageLabel">OVERVIEW</b></div><div class="top-actions"><span class="system-status"><i class="live-dot"></i> SYSTEM READY</span><button class="avatar" id="profileButton" aria-label="Open account">V</button></div></header>
+<div class="content"><div class="view active" id="view-home"><section class="hero"><div class="hero-copy"><div class="eyebrow"><span class="pulse"></span> PERSONAL TRAINING INTELLIGENCE <span class="mono">/ 01</span></div><h1>Your strength.<br><span>By design.</span></h1><p id="welcomeText">A smarter training session starts with one small decision. COMMANDER is ready when you are.</p><div class="hero-actions"><button class="button primary" data-go="routines">Build my routine <span>↗</span></button><button class="button ghost" data-go="train">Start training <span>→</span></button></div><div class="hero-foot"><span><i class="live-dot"></i> COMMANDER ONLINE</span><span>YOUR PACE. YOUR PROGRESS.</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="crosshair">+</div><div class="orb-core"><span>V</span><i>AI</i></div><span class="art-tag tag-a">MOVEMENT / INTELLIGENCE</span><span class="art-tag tag-b">01 — READY</span><span class="art-coordinate">37°46′ N<br>122°25′ W</span></div></section>
+<div class="stats-grid"><article class="stat-card"><div class="stat-label">SESSIONS COMPLETED <span>↗</span></div><strong id="statSessions">—</strong><small>Building your baseline</small><div class="stat-rule"><i style="width:36%"></i></div></article><article class="stat-card"><div class="stat-label">TRAINING MINUTES <span>◷</span></div><strong id="statMinutes">—</strong><small>This week</small><div class="stat-rule"><i style="width:54%"></i></div></article><article class="stat-card"><div class="stat-label">CURRENT STREAK <span>✳</span></div><strong id="statStreak">— <em>days</em></strong><small>Consistency over intensity</small><div class="stat-rule"><i style="width:22%"></i></div></article><article class="stat-card stat-commander"><div class="commander-avatar">C</div><div><div class="stat-label">COMMANDER SAYS</div><strong class="quote" id="commanderMessage">Small, steady steps are how lasting strength is built.</strong><button class="text-link" data-go="commander">Talk to COMMANDER <span>→</span></button></div></article></div>
+<div class="section-heading"><div><div class="eyebrow">YOUR TRAINING ENVIRONMENT</div><h2>Choose your next move.</h2></div><span class="mono muted">SELECT A MODULE / 05</span></div><div class="module-grid"><button class="module-card module-routine" data-go="routines"><span class="module-index">01 / PLAN</span><span class="module-icon">⊞</span><b>Generate a routine</b><p>Built around your time, equipment, and preferred muscle groups.</p><span class="module-arrow">↗</span></button><button class="module-card" data-go="camera"><span class="module-index">02 / MOVE</span><span class="module-icon">◎</span><b>Camera coach</b><p>Optional, on-device pose feedback. Nothing records or uploads video.</p><span class="module-arrow">↗</span></button><button class="module-card" data-go="muscles"><span class="module-index">03 / LEARN</span><span class="module-icon">◉</span><b>Explore muscles</b><p>Explore movements for every major muscle group and experience level.</p><span class="module-arrow">↗</span></button><button class="module-card" data-go="progress"><span class="module-index">04 / REFLECT</span><span class="module-icon">▥</span><b>Progress & recovery</b><p>Review your sessions and make space for rest and recovery.</p><span class="module-arrow">↗</span></button><button class="module-card" data-go="martial-arts"><span class="module-index">05 / PRACTICE</span><span class="module-icon">◌</span><b>Martial arts fundamentals</b><p>Non-contact movement drills from 12 traditions. Start at your own pace.</p><span class="module-arrow">↗</span></button></div>
+<div class="lower-grid"><section class="panel"><div class="panel-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h3>Training log</h3></div><button class="text-link" data-go="progress">VIEW ALL →</button></div><div id="recentSessions" class="recent-list"><div class="empty-state">Your completed sessions will appear here.</div></div></section><section class="recovery-card"><div class="eyebrow">RECOVERY CENTRE <span class="mono">/ 24—48H</span></div><h3>Rest is part<br>of the plan.</h3><p>Alternate focused sessions with rest or gentle mobility. Recovery is personal—listen to your body.</p><button class="text-link" data-go="recovery">OPEN RECOVERY GUIDE →</button><div class="recovery-ring">↻</div></section></div></div>
+<div class="view" id="view-routines"><div class="page-title"><div class="eyebrow">PERSONALIZED TRAINING / 02</div><h1>Build your <span>routine.</span></h1><p>Simple inputs. A plan that meets you where you are.</p></div><div class="routine-layout"><section class="panel routine-form"><div class="stepper"><span class="step current" data-step-label="1">01 <small>WELCOME</small></span><i></i><span class="step" data-step-label="2">02 <small>EXPERIENCE</small></span><i></i><span class="step" data-step-label="3">03 <small>FOCUS</small></span><i></i><span class="step" data-step-label="4">04 <small>SETUP</small></span></div><div id="routineStep"></div></section><aside class="panel routine-aside"><div class="aside-orb">V</div><span class="eyebrow">A NOTE FROM COMMANDER</span><h3>Progress is<br>personal.</h3><p>Plans prioritize accessible movements, gradual progression, and adequate rest. Skip anything that doesn’t feel right.</p><div class="privacy-note">⌑ &nbsp;Any optional photo preview stays on this device.</div></aside></div><section class="panel generated-panel hidden" id="generatedPanel"></section></div>
+<div class="view" id="view-train"><div class="page-title"><div class="eyebrow">GUIDED TRAINING / 03</div><h1>Stay with <span>the movement.</span></h1><p>One exercise at a time. Your pace is the right pace.</p></div><section class="panel training-panel" id="trainingPanel"><div class="empty-state">Build a routine first to start a guided session.<br><button class="button primary" data-go="routines">Build routine →</button></div></section></div>
+<div class="view" id="view-muscles"><div class="page-title"><div class="eyebrow">MOVEMENT LIBRARY / 04</div><h1>Know your <span>movements.</span></h1><p>Explore exercise instructions, levels, and equipment for every major muscle group.</p></div><div class="filter-row" id="muscleFilters"></div><div class="exercise-grid" id="exerciseGrid"></div></div>
+<div class="view" id="view-camera"><div class="page-title"><div class="eyebrow">MOVEMENT INTELLIGENCE / 05</div><h1>Move with <span>awareness.</span></h1><p>Your camera is off until you choose to enable it. Video stays in this browser.</p></div><div class="camera-layout"><section class="panel camera-panel"><div class="camera-frame" id="cameraFrame"><div class="camera-placeholder"><div class="camera-reticle">◎</div><b>CAMERA STANDBY</b><small>Preview appears here only after you opt in.</small></div><video id="cameraVideo" playsinline muted></video><canvas id="poseCanvas"></canvas><div class="camera-badge" id="cameraBadge">NOT CONNECTED</div></div><div class="camera-controls"><button class="button primary" id="cameraStart">Enable camera</button><button class="button ghost" id="cameraStop" disabled>Stop camera</button><select id="trackedMovement" aria-label="Movement to track"><option value="squat">Bodyweight squat</option><option value="arms">Arm raises</option></select></div><p class="privacy-note">⌑ Video is analyzed locally only. No recording, upload, or cloud processing. Pose detection requires a supported browser and network access to load the model.</p></section><aside class="panel coach-panel"><div class="eyebrow">LIVE FORM SIGNAL</div><div class="form-score" id="formStatus">—</div><h3 id="poseFeedback">Camera is off</h3><p id="poseDescription">Enable your camera to begin. Stand in clear view with good lighting. Camera analysis is informational and is not medical advice.</p><div class="coach-counter"><span>RELIABLE REP COUNT</span><strong id="repCount">00</strong></div><div class="detection-status" id="detectionStatus"><i></i> Detection not started</div><button class="text-link" id="demoToggle">Try guided demo mode →</button></aside></div></div>
+<div class="view" id="view-martial-arts"><div class="page-title"><div class="eyebrow">MOVEMENT CULTURES / 10</div><h1>Explore martial arts <span>fundamentals.</span></h1><p>Fitness-focused solo drills across 12 traditions. No partner work, contact, throws, or sparring.</p></div><div class="martial-safety" id="martialSafety">These beginner-friendly drills are for general movement practice only. Learn technical skills with qualified in-person instruction.</div><div class="filter-row" id="martialFilters"></div><div class="martial-grid" id="martialGrid"><div class="empty-state">Loading training library…</div></div></div>
+<div class="view" id="view-progress"><div class="page-title"><div class="eyebrow">TRAINING HISTORY / 06</div><h1>Progress, <span>not pressure.</span></h1><p>Look back at what you’ve done. No rankings, no appearance scores.</p></div><div class="progress-overview"><article class="stat-card"><div class="stat-label">ALL SESSIONS</div><strong id="historyTotal">0</strong></article><article class="stat-card"><div class="stat-label">THIS WEEK</div><strong id="historyWeek">0 <em>sessions</em></strong></article><article class="stat-card"><div class="stat-label">MINUTES THIS WEEK</div><strong id="historyMinutes">0</strong></article></div><section class="panel history-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR RECORD</span><h3>Workout history</h3></div></div><div id="historyList" class="recent-list"><div class="empty-state">Sign in to save and review sessions.</div></div></section><section class="panel chart-panel"><div class="panel-heading"><div><span class="eyebrow">LAST SEVEN DAYS</span><h3>Minutes in motion</h3></div></div><div class="bar-chart" id="activityChart" role="img" aria-label="Workout minutes over the last seven days"></div></section></div>
+<div class="view" id="view-commander"><div class="page-title"><div class="eyebrow">COACHING CHANNEL / 07</div><h1>COMMANDER <span>is listening.</span></h1><p>Ask about exercise technique, routine options, or recovery.</p></div><section class="panel chat-panel"><div id="chatMessages" class="chat-messages"><div class="chat-bubble commander-bubble"><b>COMMANDER</b><p>Channel open. What would you like help with?</p></div></div><form id="chatForm" class="chat-form"><label class="sr-only" for="chatInput">Message COMMANDER</label><input id="chatInput" maxlength="500" placeholder="Ask about movement, recovery, or routines…" required><button class="button primary">Send ↗</button><button type="button" class="button ghost" id="voiceToggle">Voice off</button></form><small class="disclaimer">COMMANDER offers general fitness education, not diagnosis or medical advice.</small></section></div>
+<div class="view" id="view-recovery"><div class="page-title"><div class="eyebrow">RECOVERY CENTRE / 08</div><h1>Recovery is <span>training, too.</span></h1><p>There is no universal schedule—adjust to your energy and how you feel.</p></div><div class="recovery-grid"><article class="panel recovery-tile"><span>01 / REST</span><h3>Leave room to recover.</h3><p>Rest days help you return feeling ready. Alternate challenging days with rest or lighter movement as it suits you.</p></article><article class="panel recovery-tile"><span>02 / MOBILITY</span><h3>Keep it gentle.</h3><p>A comfortable walk or easy range-of-motion session may feel good. Nothing should require pushing through pain.</p></article><article class="panel recovery-tile"><span>03 / LISTEN</span><h3>Your signals matter.</h3><p>Stop if you feel sharp pain, dizziness, or unwell. Ask a qualified health professional about ongoing symptoms.</p></article></div></div>
+<div class="view" id="view-settings"><div class="page-title"><div class="eyebrow">SYSTEM PREFERENCES / 09</div><h1>Your account, <span>your data.</span></h1><p>Review account access and privacy details.</p></div><section class="panel settings-panel"><div class="setting-row"><div><b>Account</b><p id="settingsAccount">Not signed in. Sign in to save your training history.</p></div><button class="button ghost" id="settingsAccountButton">Sign in</button></div><div class="setting-row"><div><b>Camera processing</b><p>Opt-in local pose inference in your browser. Camera frames are never sent to our Flask server.</p></div><span class="privacy-pill">ON-DEVICE</span></div><div class="setting-row"><div><b>Stored data</b><p>Workout history and preferences are associated with your account in the configured application database.</p></div><span class="privacy-pill">PRIVATE</span></div><div class="setting-row"><div><b>Safety</b><p>VYTRON AI is for general fitness education and is not medical advice or a substitute for professional care.</p></div><button class="text-link" data-go="recovery">RECOVERY GUIDE →</button></div></section></div>
+</div></main></div><div class="toast" id="toast" role="status" aria-live="polite"></div><dialog id="authDialog" class="auth-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">SECURE ACCESS / VYTRON</div><h2 id="authTitle">Welcome back.</h2><p id="authSubtitle">Sign in to save your training progress.</p><form id="authForm"><label id="nameLabel" class="hidden" for="authName">Name</label><input id="authName" class="hidden" autocomplete="name" placeholder="Your name"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"><label for="authPassword">Password</label><input id="authPassword" type="password" minlength="10" autocomplete="current-password" required placeholder="At least 10 characters"><button class="button primary" id="authSubmit">Sign in</button></form><button class="text-link" id="authSwitch">New to VYTRON? Create an account →</button><p class="auth-error" id="authError" role="alert"></p></dialog><script src="/static/app.js" defer></script><script src="/static/camera.js" defer></script><script src="/static/commander.js" defer></script><script src="/static/coach-3d.js" defer></script></body></html>

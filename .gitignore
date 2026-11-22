@@ -7,5 +7,6 @@ venv/
 !.env.example
 uploads/*
 data/*.json
+data/*.db
 *.log
 .DS_Store
