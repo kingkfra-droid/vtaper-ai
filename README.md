@@ -24,9 +24,9 @@ Local workout history is stored in `data/vytron.db`. Do not commit that database
 
 - Passwords are stored as Werkzeug-generated salted password hashes, never as plaintext.
 - Workout records and preferences are scoped to the authenticated account.
-- Camera permission is requested only after the user selects **Enable camera**. Video and pose landmarks are processed in the browser, not uploaded to Flask, and are never recorded. The external MediaPipe runtime/model are downloaded by the browser; camera frames are not sent to those asset hosts.
+- Camera permission is requested only after the user selects **Enable camera** or **Scan surroundings**. Pose landmarks and optional common-object detection run in the browser; camera frames are not uploaded to Flask, the model hosts, or recorded. The MediaPipe runtime and models download on demand. Environment labels (such as a confidently detected chair or bench) are approximate; users confirm equipment before routine generation.
 - The demo mode is explicitly labeled synthetic and does not claim to analyze live movement. Pose availability depends on browser support, GPU, and network access.
-- Guided sessions include an optional, procedural CSS 3D movement demonstration with pause, drag-to-rotate, and keyboard-accessible rotate controls. The illustrative model is not a live biomechanics assessment.
+- Guided sessions use a photorealistic 3D coach render in a perspective training studio, with idle motion, drag-to-rotate, and keyboard-accessible rotate controls. It is an instructional illustration, not a live biomechanics assessment.
 - The martial arts library covers 12 traditions with beginner-friendly, solo, non-contact movement drills; it omits partner work, sparring, throws, and strikes. Learn technical skills with a qualified instructor.
 - Movement guidance is general education, not medical advice. Stop for pain or feeling unwell; consult a qualified professional about limitations.
 

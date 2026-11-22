@@ -2,6 +2,8 @@ import random
 
 EXERCISES = [
  {"name":"Incline push-up","muscles":["Chest","Triceps","Shoulders"],"equipment":"Wall or sturdy bench","level":"Beginner","reps":"8–10","rest":45,"how":"Place hands on a wall or sturdy raised surface. Keep a long line from head to heels, lower with control, then press away.","cue":"Keep ribs stacked and elbows at a comfortable angle."},
+ {"name":"Bench incline push-up","muscles":["Chest","Triceps","Shoulders"],"equipment":"Bench","level":"Beginner","reps":"6–10","rest":45,"how":"Use a sturdy, non-slip bench that cannot slide. Place hands under shoulders, step back to a comfortable incline, lower with control, and press away.","cue":"Check the bench is stable before starting; stop if wrists or shoulders feel uncomfortable."},
+ {"name":"Bench incline push-up","muscles":["Chest","Triceps","Shoulders"],"equipment":"Bench","level":"Beginner","reps":"6–10","rest":45,"how":"Use a sturdy, non-slip bench that cannot slide. Place hands under shoulders, step back to a comfortable incline, lower with control, and press away.","cue":"Check the bench is stable before starting; stop if wrists or shoulders feel uncomfortable."},
  {"name":"Glute bridge","muscles":["Glutes","Hamstrings","Core stability"],"equipment":"Mat","level":"Beginner","reps":"10–12","rest":45,"how":"Lie on your back with knees bent. Press through both feet, lift hips comfortably, pause, and lower slowly.","cue":"Finish by squeezing your glutes; avoid arching your lower back."},
  {"name":"Chair squat","muscles":["Quadriceps","Glutes","Hip muscles"],"equipment":"Chair","level":"Beginner","reps":"8–10","rest":60,"how":"Stand in front of a stable chair, send hips back to tap the seat, then stand tall with control.","cue":"Keep the chair steady and knees tracking in line with toes."},
  {"name":"Bird dog","muscles":["Core stability","Upper back","Glutes"],"equipment":"Mat","level":"Beginner","reps":"6 each side","rest":40,"how":"From hands and knees, extend opposite arm and leg without shifting your trunk. Return and alternate.","cue":"Move slowly; keep hips level and spine comfortable."},
@@ -46,9 +48,15 @@ def build_routine(payload):
     if equipment:
         if "No equipment" in equipment:
             candidates = [e for e in candidates if e["equipment"] in ("None", "Bodyweight", "Wall")]
+            random.shuffle(candidates)
         else:
-            candidates = [e for e in candidates if e["equipment"] in equipment or e["equipment"] in ("None", "Bodyweight", "Wall")]
-    random.shuffle(candidates)
+            matched = [e for e in candidates if e["equipment"] in equipment]
+            alternatives = [e for e in candidates if e["equipment"] in ("None", "Bodyweight", "Wall")]
+            random.shuffle(matched)
+            random.shuffle(alternatives)
+            candidates = matched + alternatives
+    else:
+        random.shuffle(candidates)
     count = max(3, min(8, minutes // 4))
     exercises = [{**e, "sets": 2 if level != "Beginner" else 1} for e in candidates[:count]]
     return {"needs_guidance": False, "focus": focus, "duration": minutes, "exercises": exercises, "message": "Protocol ready. Begin at a comfortable pace, take the full rest you need, and stop if you feel pain or unwell."}
