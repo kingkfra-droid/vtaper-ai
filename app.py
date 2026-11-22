@@ -1,149 +1,49 @@
-from flask import Flask, render_template, request, jsonify
-import json
 import os
-from datetime import datetime
+from flask import Flask, jsonify, render_template, request
+from flask_login import LoginManager
+from config import Config
+from models import db, User
+from routes.auth import bp as auth_bp
+from routes.workouts import bp as workouts_bp
+from routes.progress import bp as progress_bp
+from routes.camera import bp as camera_bp
+from routes.commander import bp as commander_bp
+from routes.martial_arts import bp as martial_arts_bp
 
 app = Flask(__name__)
+app.config.from_object(Config)
+os.makedirs(os.path.join(os.path.dirname(__file__), "data"), exist_ok=True)
+db.init_app(app)
+login_manager = LoginManager(app)
+login_manager.login_view = "home"
+login_manager.session_protection = "strong"
 
-BASE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(BASE, "data")
-DB = os.path.join(DATA, "progress.json")
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.get(User, int(user_id))
 
-os.makedirs(DATA, exist_ok=True)
+@login_manager.unauthorized_handler
+def unauthorized():
+    return jsonify({"error": "Sign in to access this feature."}), 401
 
+for blueprint in (auth_bp, workouts_bp, progress_bp, camera_bp, commander_bp, martial_arts_bp):
+    app.register_blueprint(blueprint)
 
-def load_data():
-    if not os.path.exists(DB):
-        return {"sessions": [], "completed": 0}
+with app.app_context():
+    db.create_all()
 
-    try:
-        with open(DB, "r") as file:
-            data = json.load(file)
-
-        data.setdefault("sessions", [])
-        data.setdefault("completed", 0)
-        return data
-
-    except (json.JSONDecodeError, OSError):
-        return {"sessions": [], "completed": 0}
-
-
-def save_data(data):
-    with open(DB, "w") as file:
-        json.dump(data, file, indent=2)
-
-
-WORKOUTS = {
-    "full": [
-        {"name": "Easy Marching in Place", "sets": 1, "reps": "30 seconds"},
-        {"name": "Chair Squats", "sets": 1, "reps": "6-8 comfortable repetitions"},
-        {"name": "Wall Push-ups", "sets": 1, "reps": "5-8 comfortable repetitions"}
-    ],
-    "posture": [
-        {"name": "Shoulder Rolls", "sets": 1, "reps": "8 repetitions"},
-        {"name": "Gentle Wall Slides", "sets": 1, "reps": "5 repetitions"},
-        {"name": "Bird Dogs", "sets": 1, "reps": "5 each side"}
-    ],
-    "core": [
-        {"name": "Dead Bugs", "sets": 1, "reps": "5 each side"},
-        {"name": "Bird Dogs", "sets": 1, "reps": "5 each side"},
-        {"name": "Gentle Marching in Place", "sets": 1, "reps": "30 seconds"}
-    ],
-    "upper": [
-        {"name": "Arm Circles", "sets": 1, "reps": "15 seconds"},
-        {"name": "Wall Push-ups", "sets": 1, "reps": "5-8 comfortable repetitions"},
-        {"name": "Shoulder Rolls", "sets": 1, "reps": "8 repetitions"}
-    ]
-}
-
+@app.after_request
+def security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(self), microphone=(), geolocation=()"
+    if os.environ.get("VERCEL") == "1" or request.is_secure:
+        response.headers["Strict-Transport-Security"] = "max-age=63072000"
+    return response
 
 @app.route("/")
 def home():
-    return render_template("index.html", data=load_data())
-
-
-@app.route("/api/plan", methods=["POST"])
-def plan():
-    body = request.get_json(silent=True) or {}
-
-    goal = body.get("goal", "full")
-    experience = body.get("experience", "beginner")
-    equipment = body.get("equipment", "none")
-    duration = body.get("duration", "10")
-    limitations = body.get("limitations", "none")
-
-    if goal not in WORKOUTS:
-        goal = "full"
-
-    if experience not in ("beginner", "some"):
-        experience = "beginner"
-
-    if equipment not in ("none", "basic"):
-        equipment = "none"
-
-    if duration not in ("10", "15", "20"):
-        duration = "10"
-
-    # Do not prescribe exercises when the user reports limitations.
-    if limitations != "none":
-        return jsonify({
-            "goal": goal,
-            "exercises": [],
-            "needs_guidance": True,
-            "message": (
-                "Commander, you reported a movement limitation. "
-                "Pause routine generation and check with a trusted adult "
-                "or qualified health professional about suitable activities."
-            )
-        })
-
-    exercises = [dict(item) for item in WORKOUTS[goal]]
-
-    # Keep sessions short and manageable.
-    if duration == "10":
-        exercises = exercises[:2]
-
-    if experience == "some":
-        for exercise in exercises:
-            exercise["sets"] = 2
-
-    return jsonify({
-        "goal": goal,
-        "experience": experience,
-        "equipment": equipment,
-        "duration": int(duration),
-        "exercises": exercises,
-        "needs_guidance": False,
-        "message": (
-            "Protocol ready, Commander. Move at a comfortable pace, "
-            "take breaks when needed, and stop if anything hurts."
-        )
-    })
-
-
-@app.route("/api/complete", methods=["POST"])
-def complete():
-    data = load_data()
-    body = request.get_json(silent=True) or {}
-
-    data["completed"] += 1
-    data["sessions"].append({
-        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "goal": body.get("goal", "general")
-    })
-
-    save_data(data)
-
-    return jsonify({
-        "success": True,
-        "completed": data["completed"]
-    })
-
-
-@app.route("/api/progress")
-def progress():
-    return jsonify(load_data())
-
+    return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=False)
