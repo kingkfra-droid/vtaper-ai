@@ -30,6 +30,12 @@ Local workout history is stored in `data/vytron.db`. Do not commit that database
 - The martial arts library covers 12 traditions with beginner-friendly, solo, non-contact movement drills; it omits partner work, sparring, throws, and strikes. Learn technical skills with a qualified instructor.
 - Movement guidance is general education, not medical advice. Stop for pain or feeling unwell; consult a qualified professional about limitations.
 
+## Android APK
+
+The Android project in `android/` is a lightweight WebView wrapper for the live `https://vtaper-ai.vercel.app` app. It requires an internet connection; authentication and workout storage remain on the server. Camera access is requested by Android only when the in-app user chooses to enable or scan with the camera.
+
+A GitHub Actions workflow builds a debug-signed installable APK on pushes to the Android build branch or when manually dispatched. Download `vytron-ai-android-apk` from the workflow run's Artifacts section, then install it on Android (the device may ask you to allow this APK source). This debug APK is for direct testing and is not a Play Store release. The APK opens the production site and needs a reachable deployment plus internet access.
+
 ## Vercel environment variables
 
 - `SECRET_KEY` — required, unique and secret.
