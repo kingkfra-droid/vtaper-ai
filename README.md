@@ -39,7 +39,7 @@ GitHub Actions also builds this debug APK on pushes and pull requests to `main`,
 - Workout records and preferences are scoped to the authenticated account.
 - Camera permission is requested only after the user selects **Enable camera** or **Scan surroundings**. Pose landmarks and optional common-object detection run in the browser; camera frames are not uploaded to Flask, the model hosts, or recorded. The MediaPipe runtime and models download on demand. Environment labels (such as a confidently detected chair or bench) are approximate; users confirm equipment before routine generation.
 - The demo mode is explicitly labeled synthetic and does not claim to analyze live movement. Pose availability depends on browser support, GPU, and network access.
-- Guided sessions use the same faceless, reflective white android coach in a neutral stance for every exercise. Spoken exercise instructions use the device's available speech voices and can be replayed or muted. The coach is not a live biomechanics assessment.
+- Guided sessions render a realistic human coaching character with restrained movement and can also use the WebGL coach where supported. Spoken exercise instructions use the device's available speech voices and can be replayed or muted. The coach is not a live biomechanics assessment.
 - The martial arts library covers 12 traditions with beginner-friendly, solo, non-contact movement drills; it omits partner work, sparring, throws, and strikes. Learn technical skills with a qualified instructor.
 - Movement guidance is general education, not medical advice. Stop for pain or feeling unwell; consult a qualified professional about limitations.
 
