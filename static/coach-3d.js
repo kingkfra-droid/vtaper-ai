@@ -321,11 +321,12 @@
         host.setAttribute('role', 'group');
         host.setAttribute('aria-label', `3D humanoid android mannequin providing guidance for ${exercise.name || 'the exercise'}`);
         const stage = document.createElement('div');
-        stage.className = 'coach-stage';
+        stage.className = 'coach-stage coach-human';
         stage.id = 'coachStage';
         stage.setAttribute('role', 'group');
         stage.setAttribute('aria-label', `3D humanoid android mannequin providing guidance for ${exercise.name || 'the exercise'}`);
         stage.innerHTML = `
+            <img class="coach-realistic-model" src="/static/images/frank-coach.png" alt="Realistic boxing coach demonstration">
             <canvas class="coach-webgl" id="coachCanvas" aria-hidden="true"></canvas>
             <span class="coach-v-mark" aria-label="VYTRON">V</span>
             <div class="coach-speech-bubble" id="coachSpeechBubble" role="status" aria-live="polite">
