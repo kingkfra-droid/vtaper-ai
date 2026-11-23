@@ -18,16 +18,16 @@
 
         const type = movementType(exercise.name || '');
         host.setAttribute('role', 'group');
-        host.setAttribute('aria-label', `Animated 3D-style coach demonstrating ${exercise.name || 'the exercise'}`);
+        host.setAttribute('aria-label', `3D android coach in a neutral stance providing guidance for ${exercise.name || 'the exercise'}`);
         const stage = document.createElement('div');
         stage.className = 'coach-stage';
         stage.id = 'coachStage';
         stage.setAttribute('role', 'group');
-        stage.setAttribute('aria-label', `Animated 3D-style coach demonstrating ${exercise.name || 'the exercise'}`);
+        stage.setAttribute('aria-label', `3D android coach in a neutral stance providing guidance for ${exercise.name || 'the exercise'}`);
         stage.innerHTML = `
             <div class="coach-grid-glow"></div>
             <div class="coach-plinth"></div>
-            <div class="coach-figure coach-${type}" id="coachFigure" aria-hidden="true">
+            <div class="coach-figure" id="coachFigure" aria-hidden="true">
                 <div class="coach-head"></div>
                 <div class="coach-neck"></div>
                 <div class="coach-torso"></div>
@@ -54,7 +54,7 @@
                 <span class="coach-speech-label">COACH / GUIDANCE</span>
                 <p id="coachNarrationText"></p>
             </div>
-            <span class="coach-scene-label">VYTRON / 3D MOVEMENT GUIDE</span>
+            <span class="coach-scene-label">VYTRON / ANDROID COACH</span>
             <span class="coach-scene-coords">${type.toUpperCase()} SESSION</span>`;
         host.replaceChildren(stage);
 
@@ -118,7 +118,7 @@
                 if (activeUtterance !== utterance) return;
                 activeUtterance = null;
                 stage.classList.remove('is-speaking');
-                setStatus('3D movement guide · drag to rotate');
+                setStatus('Android coach · drag to rotate');
             };
             utterance.onerror = event => {
                 if (activeUtterance !== utterance) return;
@@ -212,8 +212,8 @@
 
         function toggleMotion() {
             const paused = stage.classList.toggle('paused');
-            motionToggle.textContent = paused ? 'Resume demonstration' : 'Pause demonstration';
-            setStatus(paused ? 'Coach demonstration paused' : '3D movement guide · drag to rotate');
+            motionToggle.textContent = paused ? 'Resume coach motion' : 'Pause coach motion';
+            setStatus(paused ? 'Coach demonstration paused' : 'Android coach · drag to rotate');
         }
 
         function toggleVoice() {
@@ -234,6 +234,7 @@
         };
         rotateLeft?.addEventListener('click', turnLeft);
         rotateRight?.addEventListener('click', turnRight);
+        if (motionToggle) motionToggle.textContent = 'Pause coach motion';
         motionToggle?.addEventListener('click', toggleMotion);
         workoutPause?.addEventListener('click', syncWorkoutPause);
         replayButton.addEventListener('click', speak);
@@ -243,7 +244,7 @@
         stage.addEventListener('pointerup', onUp);
         stage.addEventListener('pointercancel', onUp);
 
-        setStatus(speechSupported ? '3D movement guide · drag to rotate' : 'Spoken guidance is not available in this browser');
+        setStatus(speechSupported ? 'Android coach · drag to rotate' : 'Spoken guidance is not available in this browser');
         speak();
 
         stopCurrent = () => {

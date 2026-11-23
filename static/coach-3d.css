@@ -186,3 +186,99 @@
         animation: none;
     }
 }
+
+.coach-stage {
+    background: radial-gradient(ellipse at 50% 38%, #171922 0, #090a0d 48%, #030304 82%);
+}
+
+.coach-stage:before {
+    background-image:
+        linear-gradient(#b8c5e809 1px, transparent 1px),
+        linear-gradient(90deg, #b8c5e809 1px, transparent 1px);
+}
+
+.coach-stage .coach-head {
+    border: 1px solid #fff;
+    border-radius: 48% 48% 44% 44%;
+    background: linear-gradient(110deg, #7d8490 0%, #fff 27%, #dce1e8 52%, #fff 71%, #707784 100%);
+    box-shadow: inset -5px -5px 9px #46505e66, inset 3px 2px 6px #fff, 0 0 16px #cbd9f066;
+}
+
+.coach-stage .coach-head i,
+.coach-stage .coach-head b,
+.coach-stage .coach-head em {
+    display: none;
+}
+
+.coach-stage .coach-neck {
+    border: 1px solid #f5f7fb;
+    background: linear-gradient(90deg, #686f7b, #f8faff 38%, #cbd1db 68%, #606773);
+    box-shadow: inset 0 0 5px #fff9;
+}
+
+.coach-stage .coach-torso {
+    border: 1px solid #f8faff;
+    background: linear-gradient(100deg, #6d7480 0%, #edf1f6 20%, #fff 38%, #c6cdd7 54%, #f9fbff 73%, #676e79 100%);
+    box-shadow: inset -10px -3px 14px #4e566266, inset 5px 2px 9px #fff;
+}
+
+.coach-stage .coach-torso:before {
+    background:
+        radial-gradient(ellipse at 27% 42%, #fff 0 29%, #c7ced8 53%, transparent 70%),
+        radial-gradient(ellipse at 73% 42%, #fff 0 29%, #c7ced8 53%, transparent 70%);
+    filter: drop-shadow(0 2px 2px #626b7888);
+}
+
+.coach-stage .coach-torso:after {
+    background:
+        linear-gradient(90deg, transparent 45%, #6f788555 49%, #fff 53%, transparent 59%),
+        repeating-linear-gradient(180deg, #e8ecf2 0 6px, #929aa6 7px, #f8faff 9px);
+    box-shadow: 0 0 0 4px #aab2bf99;
+}
+
+.coach-stage .coach-pelvis {
+    border: 1px solid #f6f8fc;
+    background: linear-gradient(100deg, #707783, #f4f6fa 42%, #c6cdd7 68%, #646b76);
+    box-shadow: inset 0 4px 5px #fff8, inset 0 -5px 8px #58606b66;
+}
+
+.coach-stage .coach-pelvis:before {
+    background: #737b87aa;
+}
+
+.coach-stage .coach-figure .coach-upper-arm,
+.coach-stage .coach-figure .coach-forearm,
+.coach-stage .coach-figure .coach-upper-leg,
+.coach-stage .coach-figure .coach-lower-leg {
+    border: 1px solid #f8faff;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #656d79 0%, #d5dbe4 24%, #fff 43%, #dce1e9 65%, #707783 100%);
+    box-shadow: inset -5px 0 7px #51596566, inset 2px 0 5px #fff;
+}
+
+.coach-stage .coach-figure .coach-upper-arm:before,
+.coach-stage .coach-figure .coach-upper-arm:after,
+.coach-stage .coach-figure .coach-forearm:after,
+.coach-stage .coach-figure .coach-upper-leg:before,
+.coach-stage .coach-figure .coach-upper-leg:after,
+.coach-stage .coach-figure .coach-lower-leg:after {
+    background: linear-gradient(90deg, #8a929e, #f8faff 48%, #aeb6c2);
+    box-shadow: inset 0 0 4px #fff9;
+}
+
+.coach-stage .coach-figure .coach-joint {
+    border: 1px solid #f8faff;
+    background: radial-gradient(circle at 35% 28%, #fff, #c0c7d1 62%, #737b87);
+    box-shadow: 0 0 7px #dce6f044;
+}
+
+.coach-stage .coach-figure .coach-hand,
+.coach-stage .coach-figure .coach-foot {
+    border: 1px solid #f8faff;
+    background: linear-gradient(100deg, #767e8a, #f8faff 42%, #c6cdd7 72%, #656d79);
+}
+
+.coach-stage .coach-chest-light {
+    background: #dff5ff;
+    box-shadow: 0 0 13px 5px #9ddfffaa;
+}
