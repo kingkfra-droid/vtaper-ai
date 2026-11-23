@@ -22,6 +22,8 @@ gradle assembleDebug -PwebAppUrl=https://your-vytron-domain.example
 
 The APK is written to `android/app/build/outputs/apk/debug/app-debug.apk`. If `webAppUrl` is omitted, enter the HTTPS app address the first time the Android app opens. Camera access is requested only when the web app starts its opt-in camera feature; local HTTP is permitted only for `localhost` and `127.0.0.1`.
 
+GitHub Actions also builds this debug APK on pushes and pull requests to `main`, and on manual workflow runs. Download the `vytron-ai-debug-apk` artifact from the run's summary page. Optionally set the repository variable `WEB_APP_URL` to bake the deployed app address into each build; otherwise, the app asks for its address on first launch. This is a debug build, not a Play Store-signed release.
+
 ## Deploy to Vercel
 
 1. Import the repository into Vercel and select the Python runtime. The included `vercel.json` routes requests to the Flask application in `app.py`.
