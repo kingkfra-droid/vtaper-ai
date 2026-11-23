@@ -1,6 +1,6 @@
-# VYTRON AI
+# VTaper AI
 
-VYTRON AI is a Flask fitness-coaching application with secure accounts, routine generation, guided sessions, a movement library, local-first camera pose feedback, and private workout history.
+VTaper AI is a Flask fitness-coaching application with secure accounts, routine generation, guided sessions, an interactive 3D muscle coach, a browser-based marketing video studio, a movement library, local-first camera pose feedback, and private workout history.
 
 ## Run locally
 
@@ -26,7 +26,7 @@ Local workout history is stored in `data/vytron.db`. Do not commit that database
 - Workout records and preferences are scoped to the authenticated account.
 - Camera permission is requested only after the user selects **Enable camera** or **Scan surroundings**. Pose landmarks and optional common-object detection run in the browser; camera frames are not uploaded to Flask, the model hosts, or recorded. The MediaPipe runtime and models download on demand. Environment labels (such as a confidently detected chair or bench) are approximate; users confirm equipment before routine generation.
 - The demo mode is explicitly labeled synthetic and does not claim to analyze live movement. Pose availability depends on browser support, GPU, and network access.
-- Guided sessions use a photorealistic 3D coach render in a perspective training studio, with idle motion, drag-to-rotate, and keyboard-accessible rotate controls. It is an instructional illustration, not a live biomechanics assessment.
+- The interactive 3D Coach is an educational Three.js muscle explorer. It supports muscle selection, recommendations, view controls, drag rotation, and zoom where WebGL2 is available; the exercise library remains available as a fallback. It is not a live biomechanics assessment.
 - The martial arts library covers 12 traditions with beginner-friendly, solo, non-contact movement drills; it omits partner work, sparring, throws, and strikes. Learn technical skills with a qualified instructor.
 - Movement guidance is general education, not medical advice. Stop for pain or feeling unwell; consult a qualified professional about limitations.
 
@@ -34,4 +34,9 @@ Local workout history is stored in `data/vytron.db`. Do not commit that database
 
 - `SECRET_KEY` — required, unique and secret.
 - `DATABASE_URL` — optional persistent SQLAlchemy database URL for durable production data.
+- `VTAPER_ADMIN_EMAILS` — comma-separated, normalized email allowlist for Video Studio administrators. Access is denied to everyone when unset; configure only trusted admin accounts.
+- `VTAPER_VIDEO_API_URL` — optional HTTPS endpoint for an external JSON video-generation adapter; the endpoint receives the selected template, exercise, aspect ratio, duration, and a scene prompt. Provider responses may include `video_url` or `job_id`.
+- `VTAPER_VIDEO_API_KEY` — optional bearer credential for the configured video endpoint. Keep it in server environment variables, never in browser code.
 - `VERCEL=1` — automatically provided by Vercel; enables secure cookies and the temporary SQLite fallback.
+
+The Marketing Studio renders Three.js scenes locally and exports MP4 when the browser supports it, otherwise WebM. It does not claim to use an external AI video provider. Promotional caption suggestions are editable templates, not AI-generated text. Admin access is checked by Flask using `VTAPER_ADMIN_EMAILS`; hiding the client controls is not the security boundary.

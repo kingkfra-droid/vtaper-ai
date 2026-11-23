@@ -9,6 +9,7 @@ from routes.progress import bp as progress_bp
 from routes.camera import bp as camera_bp
 from routes.commander import bp as commander_bp
 from routes.martial_arts import bp as martial_arts_bp
+from routes.video_studio import bp as video_studio_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -26,7 +27,7 @@ def load_user(user_id):
 def unauthorized():
     return jsonify({"error": "Sign in to access this feature."}), 401
 
-for blueprint in (auth_bp, workouts_bp, progress_bp, camera_bp, commander_bp, martial_arts_bp):
+for blueprint in (auth_bp, workouts_bp, progress_bp, camera_bp, commander_bp, martial_arts_bp, video_studio_bp):
     app.register_blueprint(blueprint)
 
 with app.app_context():
