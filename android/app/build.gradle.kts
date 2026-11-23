@@ -6,6 +6,8 @@ plugins {
 
 val apiBaseUrl = providers.gradleProperty("apiBaseUrl").orElse("https://example.com").get().trimEnd('/')
 val escapedApiBaseUrl = apiBaseUrl.replace("\\", "\\\\").replace("\"", "\\\"")
+val webAppUrl = providers.gradleProperty("webAppUrl").orElse("").get().trimEnd('/')
+val escapedWebAppUrl = webAppUrl.replace("\\", "\\\\").replace("\"", "\\\"")
 
 android {
     namespace = "com.vytron.ai"
@@ -18,6 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0.0"
         buildConfigField("String", "API_BASE_URL", "\"$escapedApiBaseUrl\"")
+        buildConfigField("String", "WEB_APP_URL", "\"$escapedWebAppUrl\"")
     }
 
     buildFeatures {
