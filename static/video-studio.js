@@ -339,7 +339,7 @@ async function generateExternalVideo() {
     const response = await fetch("/api/admin/video-studio/generate", {
       method: "POST",
       credentials: "same-origin",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-CSRFToken": window.csrfToken?.() || "" },
       body: JSON.stringify({ template: options.template, category: options.category, exercise: options.exercise, duration_seconds: options.duration, aspect_ratio: options.ratio }),
     });
     const result = await response.json().catch(() => ({}));
